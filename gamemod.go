@@ -14,3 +14,11 @@ func getPointsForRound(guess int, wins int) int {
 		return 0
 	}
 }
+
+func getNumCardsOfRound(lastRoundNumCards int, isIncrement bool) int {
+	if isIncrement {
+		return lastRoundNumCards + 1
+	} else {
+		return lastRoundNumCards - 1
+	}
+}
