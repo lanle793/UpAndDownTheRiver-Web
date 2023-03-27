@@ -12,10 +12,30 @@ func TestGetPointsForRoundCorrectGuess(t *testing.T) {
 	}
 }
 
-func TestGetPointsForRoundIncorrectGuess(t *testing.T) {
+func TestGetPointsForRoundCorrectGuessZero(t *testing.T) {
+	guess := 0
+	wins := 0
+	expected := 5
+	actual := getPointsForRound(guess, wins)
+	if actual != expected {
+		t.Errorf("Result was incorrect, got: %d, want: %d.", actual, expected)
+	}
+}
+
+func TestGetPointsForRoundFewerWinsThanGuess(t *testing.T) {
 	guess := 5
 	wins := 3
 	expected := 0
+	actual := getPointsForRound(guess, wins)
+	if actual != expected {
+		t.Errorf("Result was incorrect, got: %d, want: %d.", actual, expected)
+	}
+}
+
+func TestGetPointsForRoundMoreWinsThanGuess(t *testing.T) {
+	guess := 5
+	wins := 7
+	expected := 2
 	actual := getPointsForRound(guess, wins)
 	if actual != expected {
 		t.Errorf("Result was incorrect, got: %d, want: %d.", actual, expected)

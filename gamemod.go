@@ -11,11 +11,22 @@ func Init() {
 }
  
 func getPointsForRound(guess int, wins int) int {
+	var points int
+	
 	if wins == guess {
-		return 10 + wins
+		if guess == 0 {
+			points = 5
+		} else {
+			points = wins + 10
+		}
 	} else {
-		return 0
+		points = wins - guess
+		if points < 0 {
+			points = 0
+		}
 	}
+
+	return points
 }
 
 func getNumCardsOfRound(lastRoundNumCards int, isIncrement bool) int {
