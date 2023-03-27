@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func Init() {
 	fmt.Println("Let the game begin!")
@@ -21,4 +24,11 @@ func getNumCardsOfRound(lastRoundNumCards int, isIncrement bool) int {
 	} else {
 		return lastRoundNumCards - 1
 	}
+}
+
+func getWinner(playerList []Player) Player{
+	sort.Slice(playerList, func(i, j int) bool {
+		return playerList[i].Points > playerList[j].Points
+	})
+	return playerList[0]
 }
