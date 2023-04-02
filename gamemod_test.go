@@ -54,13 +54,26 @@ func TestGetNumCardsOfRound(t *testing.T) {
 	}
 }
 
-func TestGetWinner(t *testing.T) {
-	player1 := Player{"Jane", 50}
-	player2 := Player{"John", 34}
-	player3 := Player{"April", 77}
+func TestGetTrickWinner(t *testing.T) {
+	player1 := Player{"Jane", 50, Card{"Heart", 12}}
+	player2 := Player{"John", 34, Card{"Club", 4}}
+	player3 := Player{"April", 77, Card{"Spade", 7}}
+	playerList := []Player{player1, player2, player3}
+
+	trickWinner := getTrickWinner(playerList, "Spade", "Heart")
+
+	if trickWinner != player3 {
+		t.Errorf("Incorrect winner, got: %+v, want: %+v", trickWinner, player3)
+	}
+}
+
+func TestGetGameWinner(t *testing.T) {
+	player1 := Player{"Jane", 50, Card{"Heart", 12}}
+	player2 := Player{"John", 34, Card{"Club", 4}}
+	player3 := Player{"April", 77, Card{"Spade", 7}}
 	playerList := []Player{player1, player2, player3}
 	
-	winner := getWinner(playerList)
+	winner := getGameWinner(playerList)
 
 	if winner != player3 {
 		t.Errorf("Incorrect winner, got: %+v, want: %+v", winner, player3)
